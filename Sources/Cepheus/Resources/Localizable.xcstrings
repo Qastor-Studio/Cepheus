@@ -102,13 +102,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collect recent-used emojis"
+            "value" : "Record recent-used emojis"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "收集最近使用表情符号"
+            "value" : "记录最近使用表情符号"
           }
         }
       }

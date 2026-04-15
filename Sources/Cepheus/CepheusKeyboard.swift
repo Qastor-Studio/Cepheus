@@ -21,7 +21,7 @@ public struct CepheusKeyboard: View {
     
     @State private var cepheusKeyboardIsDisplaying = false
     
-    public init(_ titleKey: LocalizedStringKey, text: Binding<String>, isSecure: Bool = false, allowEmojis: Bool = true, onSubmit: @escaping () -> Void) {
+    public init(_ titleKey: LocalizedStringKey, text: Binding<String>, isSecure: Bool = false, allowEmojis: Bool = true, onSubmit: @escaping () -> Void = {}) {
         self.titleKey = titleKey
         self.text = text
         self.isSecure = isSecure
@@ -33,8 +33,14 @@ public struct CepheusKeyboard: View {
         Button(action: {
             cepheusKeyboardIsDisplaying = true
         }, label: {
-            Text(titleKey)
+            if !text.wrappedValue.isEmpty {
+                Text(text.wrappedValue)
+            } else {
+                Text(titleKey)
+                    .foregroundStyle(.secondary)
+            }
         })
+        .accessibilityAddTraits(.isSearchField)
         .buttonBorderShape(.roundedRectangle)
         .sheet(isPresented: $cepheusKeyboardIsDisplaying, content: {
           NavigationStack {

@@ -81,22 +81,6 @@
         }
       }
     },
-    "Cepheus Keyboard" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus Keyboard"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus键盘"
-          }
-        }
-      }
-    },
     "Cepheus.about.credits" : {
       "localizations" : {
         "en" : {
@@ -177,22 +161,6 @@
         }
       }
     },
-    "Cepheus.prompt" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus Keyboard"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus Keyboard"
-          }
-        }
-      }
-    },
     "Cepheus.space" : {
       "localizations" : {
         "en" : {
@@ -205,39 +173,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格"
-          }
-        }
-      }
-    },
-    "Cepheus.toggle" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use Cepheus Keyboard"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用Cepheus键盘"
-          }
-        }
-      }
-    },
-    "Cepheus.unavailable" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus Keyboard Unavailable"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cepheus键盘不可用"
           }
         }
       }

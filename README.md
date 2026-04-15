@@ -26,8 +26,8 @@ We developed Cepheus, allowing all users to type with a full-keyboard.
 
 ## Parameters
 ```swift
-CepheusKeyboard(input: $input,
-                        prompt: "Email Address",
+CepheusKeyboard("Email Address",
+                        prompt: $input ,
                         CepheusIsEnabled: true,
                         style: "field"
                         defaultLanguage: "en-qwerty",
@@ -35,7 +35,6 @@ CepheusKeyboard(input: $input,
                         allowEmojis: true,
                         isSecure: false,
                         displayingSecureTextIsAllowed: true,
-                        autoCorrectionIsEnable: false,
                         aboutLinkIsHidden: false,
                         onSubmit: {
                           print("Email Address Submitted")
@@ -44,15 +43,15 @@ CepheusKeyboard(input: $input,
 })
 ```
 
-### input
-`input: Binding<String>` indicates what the input text is.
-
-### prompt
-`prompt: LocalizedStringResource` tells users what the text field is.
+### _
+`_: LocalizedStringResource` tells users what the text field is.
 
 Prompt will be displayed on the text-edit field (when `style` is `field`) and the link when the input is empty.
 
 Default as `LocalizedStringResource("Cepheus.prompt", bundle: .atURL(Bundle.module.bundleURL))`.
+
+### text
+`text: Binding<String>` indicates what the input text is.
 
 ### CepheusIsEnabled
 `CepheusIsEnabled: Bool?` could be toggled if you want to force Cepheus keyboard to be used or not.
@@ -125,13 +124,6 @@ Default as `true`
 Please use `CephuesSettings()` to add a link to the About page if you hide it.
 
 Default as `false`
-
-### autoCorrectionIsEnabled
-`autoCorrectionIsEnabled: Bool` determines if autocorrection is allowed.
-
-Since Cepheus doesn't provide autocorrection, so this parameter is only meaningful when `CepheusIsEnabled` is `false`.
-
-Default as `true`
 
 ### onSubmit
 `onSubmit: () -> Void` receives actions and will be run when Confirm is pressed.

@@ -43,6 +43,53 @@ CepheusKeyboard("Email Address", text: $text, isSecure: false, inputMethods: [.e
 ### text
 `text: Binding<String>` indicates what the input text is.
 
+### CepheusIsEnabled
+`CepheusIsEnabled: Bool?` could be toggled if you want to force Cepheus keyboard to be used or not.
+
+This value is not recommened to be used in normal usage, since Cepheus will handle if it should be used by itself.
+
+If this is set to `false`, then Cepheus Keyboard goes into normal `TextField` or `SecureField` from SwiftUI.
+
+`nil` make Cepheus handle whether it should be used or not.
+
+Default as `nil`.
+
+### style
+`style: String` is a vital parameter when you wish to have different ways to use keyboard.
+
+- `"field"` is like vanilla SwiftUI `TextField`, pops up in a sheet, displays `prompt` when empty, and shows `input` when there's something.
+- `"link"` is still a sheet while its apprearence depends on `label`.
+- `"page"` is a `NavigationLink` which links to a new page for typing, using `label` as its apprearence.
+- `"field-page"` mixed `"field"`'s appearence and  `"page"`'s interaction, which means it shows as field and navigates to a new page for the keyboard.
+- `direct` shows the keyboard itself directly without any interactions.
+
+Default as `"field"`.
+
+Other available value: `"link"``"page"``"field-page"``"direct"`.
+
+### dafaultLanguage
+`defaultLanguage: String` is useful when you expected the keyboard to have a specific default language.
+
+This determines the default language for the keyboard.
+
+Default as `en-qwerty`.
+
+Other available value: `"zh-hans-pinyin"`.
+
+### languageDisallowRules
+`languageDisallowRules: String` limits the selections of languages.
+
+This changes which type of language can & can’t users select.
+
+Default as `"none"`
+
+Other available values: `"deny-all"``"deny-Latin"``"deny-CJK"``"English-only"`
+
+### allowEmojis
+`allowEmojis: Bool` indicates if emojis are allowed.
+
+Default as `true`
+
 ### isSecure
 `isSecure: Bool` indicates if the keyboard is used for typing privacy-sensitive contents.
 

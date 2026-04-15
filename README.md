@@ -25,13 +25,6 @@ We developed Cepheus, allowing all users to type with a full-keyboard.
 
 ## Parameters
 ```swift
-
-    public var titleKey: LocalizedStringKey
-    public var text: Binding<String>
-    public var isSecure = false
-    public var inputMethods: [CepheusInputMethods] = CepheusInputMethods.allCases
-    public var allowEmojis = true
-    public var onSubmit: () -> Void = {}
 CepheusKeyboard("Email Address", text: $text, isSecure: false, inputMethods: [.english], allowEmojis: false, onSubmit: {
     print("Email address submitted")
 })

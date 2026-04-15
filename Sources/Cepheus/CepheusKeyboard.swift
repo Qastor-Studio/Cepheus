@@ -23,18 +23,37 @@ public struct CepheusKeyboard<L: View>: View {
   public var allowEmojis: Bool = true
   public var isSecure: Bool = false
   public var displayingSecureTextIsAllowed: Bool = true
-  public var autoCorrectionIsEnabled: Bool = true
+//  public var autoCorrectionIsEnabled: Bool = true
   public var aboutLinkIsHidden: Bool = false
   public var onSubmit: () -> Void = {}
   public var label: () -> L
   
-  @State var CepheusKeyboardIsDisplaying = false
-  @State var dottedText = ""
-  @State var safeStyle = "field"
-  @State var useCepheus = false
+  @State private var CepheusKeyboardIsDisplaying = false
+  @State private var dottedText = ""
+  @State private var safeStyle = "field"
+  @State private var useCepheus = false
   @AppStorage("isFirstUse") var isFirstUse = true
   @AppStorage("internalCepheusIsEnabled") var internalCepheusIsEnabled = false
-  public init(input: Binding<String>, prompt: LocalizedStringResource = "Cepheus Keyboard", CepheusIsEnabled: Bool? = nil, style: String = "field", defaultLanguage: String = "en-qwerty", languageDisallowRules: String = "none", allowEmojis: Bool = true, isSecure: Bool = false, displayingSecureTextIsAllowed: Bool = true, CepheusKeyboardIsDisplaying: Bool = false, dottedText: String = "", autoCorrectionIsEnabled: Bool = true, aboutLinkIsHidden: Bool = false, onSubmit: @escaping () -> Void = {}, label: @escaping () -> L = {Text("Cepheus Keyboard")}) {
+    @Environment(\.autocorrectionDisabled) var autocorrectionDisabled
+    
+//    @available(*, deprecated, renamed: "Use Use init(_: LocalizedStringResource, text: Binding<String>, ...)")
+    @available(*, deprecated, message: "Use without `input` value")
+  public init(
+    input: Binding<String>,
+    prompt: LocalizedStringResource = "Cepheus Keyboard",
+    CepheusIsEnabled: Bool? = nil,
+    style: String = "field",
+    defaultLanguage: String = "en-qwerty",
+    languageDisallowRules: String = "none",
+    allowEmojis: Bool = true,
+    isSecure: Bool = false,
+    displayingSecureTextIsAllowed: Bool = true,
+    CepheusKeyboardIsDisplaying: Bool = false,
+    dottedText: String = "",
+    autoCorrectionIsEnabled: Bool = true,
+    aboutLinkIsHidden: Bool = false,
+    onSubmit: @escaping () -> Void = {},
+    label: @escaping () -> L = {Text("Cepheus Keyboard")}) {
     self.input = input
     self.prompt = prompt
     self.CepheusIsEnabled = CepheusIsEnabled
@@ -44,13 +63,44 @@ public struct CepheusKeyboard<L: View>: View {
     self.allowEmojis = allowEmojis
     self.isSecure = isSecure
     self.displayingSecureTextIsAllowed = displayingSecureTextIsAllowed
-    self.CepheusKeyboardIsDisplaying = CepheusKeyboardIsDisplaying
-    self.dottedText = dottedText
-    self.autoCorrectionIsEnabled = autoCorrectionIsEnabled
+//    self.CepheusKeyboardIsDisplaying = CepheusKeyboardIsDisplaying
+//    self.dottedText = dottedText
+//    self.autoCorrectionIsEnabled = autoCorrectionIsEnabled
     self.aboutLinkIsHidden = aboutLinkIsHidden
     self.onSubmit = onSubmit
     self.label = label
   }
+    
+    public init(
+        _ prompt: LocalizedStringResource = "Cepheus Keyboard",
+        text: Binding<String>,
+        CepheusIsEnabled: Bool? = nil,
+        style: String = "field",
+        defaultLanguage: String = "en-qwerty",
+        languageDisallowRules: String = "none",
+        allowEmojis: Bool = true,
+        isSecure: Bool = false,
+        displayingSecureTextIsAllowed: Bool = true,
+        aboutLinkIsHidden: Bool = false,
+        onSubmit: @escaping () -> Void = {},
+        label: @escaping () -> L = {Text("Cepheus Keyboard")}) {
+      self.input = text
+      self.prompt = prompt
+      self.CepheusIsEnabled = CepheusIsEnabled
+      self.style = style
+      self.defaultLanguage = defaultLanguage
+      self.languageDisallowRules = languageDisallowRules
+      self.allowEmojis = allowEmojis
+      self.isSecure = isSecure
+      self.displayingSecureTextIsAllowed = displayingSecureTextIsAllowed
+//      self.CepheusKeyboardIsDisplaying = CepheusKeyboardIsDisplaying
+//      self.dottedText = dottedText
+  //    self.autoCorrectionIsEnabled = autoCorrectionIsEnabled
+      self.aboutLinkIsHidden = aboutLinkIsHidden
+      self.onSubmit = onSubmit
+      self.label = label
+    }
+    
   public var body: some View {
     NavigationStack {
       if useCepheus {
@@ -131,7 +181,7 @@ public struct CepheusKeyboard<L: View>: View {
             })
           } else {
             TextField(text: input, label: {Text(prompt)})
-              .autocorrectionDisabled(!autoCorrectionIsEnabled)
+              .autocorrectionDisabled(autocorrectionDisabled)
               .onSubmit {
                 onSubmit()
               }
@@ -146,7 +196,7 @@ public struct CepheusKeyboard<L: View>: View {
           }
         } else {
           SecureField(text: input, label: {Text(prompt)})
-            .autocorrectionDisabled(!autoCorrectionIsEnabled)
+            .autocorrectionDisabled(autocorrectionDisabled)
             .onSubmit {
               onSubmit()
             }

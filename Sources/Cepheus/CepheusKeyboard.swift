@@ -21,7 +21,7 @@ public struct CepheusKeyboard: View {
     
     @State private var cepheusKeyboardIsDisplaying = false
     
-    public init(titleKey: LocalizedStringKey, text: Binding<String>, isSecure: Bool = false, allowEmojis: Bool = true, onSubmit: @escaping () -> Void) {
+    public init(_ titleKey: LocalizedStringKey, text: Binding<String>, isSecure: Bool = false, allowEmojis: Bool = true, onSubmit: @escaping () -> Void) {
         self.titleKey = titleKey
         self.text = text
         self.isSecure = isSecure
